@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FormControl, Select, MenuItem } from "@material-ui/core";
-import { api, fetchCountries } from "../api";
-import { formatCountries } from "../helpers";
+import { api, fetchCountries } from "../../api";
+import { formatCountries } from "../../helpers";
 
 const Header = () => {
   const [countries, setCountries] = useState([]);
