@@ -6,16 +6,15 @@ import {
   Card,
   CardContent,
 } from "@material-ui/core";
+import InfoBox from "./components/infoBox/InfoBox";
+import Map from "./components/map/Map";
+import Table from "./components/table/Table";
 import {
-  apiAll,
   fetchCountries,
-  apiCountryCode,
   fetchCountryDataByCode,
   fetchAllCountryData,
 } from "./api";
-import { formatCountries } from "./helpers";
-import InfoBox from "./components/infoBox/InfoBox";
-import Map from "./components/map/Map";
+import { formatCountries, sortDataByMaxCases } from "./helpers";
 
 import "./App.css";
 
@@ -23,6 +22,7 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     const getWorldwideData = async () => {
@@ -37,6 +37,8 @@ function App() {
     const getCountries = async () => {
       const data = await fetchCountries();
       const countries = formatCountries(data);
+      const sortedData = sortDataByMaxCases(data)
+      setTableData(sortedData)
       setCountries(countries);
     };
 
@@ -50,15 +52,8 @@ function App() {
     setCountry(countryCode);
 
     setCountryInfo(data);
-
-    /*     const url = countryCode === 'worldwide'
-      ? apiAll
-      : apiCountryCode(countryCode)
-    
-      await  */
   };
 
-  console.log("ssss", countryInfo);
   return (
     <div className="app">
       <div className="app__left">
@@ -99,6 +94,7 @@ function App() {
       <Card className="app__right">
         <CardContent>
           <h3>Live cases by Country</h3>
+          <Table countries={tableData} />
           <h3>Worlwide new cases</h3>
         </CardContent>
       </Card>
