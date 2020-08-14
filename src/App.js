@@ -9,6 +9,7 @@ import {
 import InfoBox from "./components/infoBox/InfoBox";
 import Map from "./components/map/Map";
 import Table from "./components/table/Table";
+import LineGraph from './components/lineGraph/LineGraph'
 import {
   fetchCountries,
   fetchCountryDataByCode,
@@ -96,6 +97,7 @@ function App() {
           <h3>Live cases by Country</h3>
           <Table countries={tableData} />
           <h3>Worlwide new cases</h3>
+          <LineGraph />
         </CardContent>
       </Card>
     </div>
