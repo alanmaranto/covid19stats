@@ -75,17 +75,20 @@ export const showDataOnMap = (data, casesType = "cases") =>
           <div className="info-name">{country.country}</div>
           <div className="info-confirmed">
             <span className="info-title">Cases: </span>
-            {numeral(country.cases).format("0")}
+            {numeral(country.cases).format("0.0a")}
           </div>
           <div className="info-recovered">
             <span className="info-title">Recovered: </span>
-            {numeral(country.recovered).format("0")}
+            {numeral(country.recovered).format("0.0a")}
           </div>
           <div className="info-deaths">
             <span className="info-title">Deaths: </span>
-            {numeral(country.deaths).format("0")}
+            {numeral(country.deaths).format("0.0a")}
           </div>
         </div>
       </Popup>
     </Circle>
   ));
+
+export const prettyPrintStat = (stat) =>
+  stat ? `+${numeral(stat).format("0.0a")}` : "+0";

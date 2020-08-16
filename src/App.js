@@ -16,7 +16,7 @@ import {
   fetchCountryDataByCode,
   fetchAllCountryData,
 } from "./api";
-import { formatCountries, sortDataByMaxCases } from "./helpers";
+import { formatCountries, sortDataByMaxCases, prettyPrintStat } from "./helpers";
 
 import "./App.css";
 
@@ -82,18 +82,18 @@ function App() {
         <div className="app__stats">
           <InfoBox
             title="Coronavirus cases"
-            cases={countryInfo.todayCases}
-            total={countryInfo.cases}
+            cases={prettyPrintStat(countryInfo.todayCases)}
+            total={prettyPrintStat(countryInfo.cases)}
           />
           <InfoBox
             title="Recovered"
-            cases={countryInfo.todayRecovered}
-            total={countryInfo.recovered}
+            cases={prettyPrintStat(countryInfo.todayRecovered)}
+            total={prettyPrintStat(countryInfo.recovered)}
           />
           <InfoBox
             title="Deaths"
-            cases={countryInfo.todayDeaths}
-            total={countryInfo.deaths}
+            cases={prettyPrintStat(countryInfo.todayDeaths)}
+            total={prettyPrintStat(countryInfo.deaths)}
           />
         </div>
         <Map center={mapCenter} zoom={mapZoom} countries={mapCountries} />
