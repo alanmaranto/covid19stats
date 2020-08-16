@@ -53,9 +53,11 @@ function App() {
     const countryCode = e.target.value;
 
     const data = await fetchCountryDataByCode(countryCode);
+    console.log(data)
     setCountry(countryCode);
-
     setCountryInfo(data);
+    setMapCenter([data.countryInfo.lat, data.countryInfo.long])
+    setMapZoom(4)
   };
 
   return (
