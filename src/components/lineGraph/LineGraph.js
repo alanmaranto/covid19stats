@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import numeral from "numeral";
 import { buildChartData } from "../../helpers";
-import { fetch120Days } from "../../api";
+import { fetchLastDays } from "../../api";
 
 const LineGraph = ({ casesType = "cases" }) => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const getLast120Days = async () => {
-      const data = await fetch120Days();
+    const getLastDays = async () => {
+      const data = await fetchLastDays("120");
       const chartData = buildChartData(data, casesType);
       setData(chartData);
     };
 
-    getLast120Days();
+    getLastDays();
   }, [casesType]);
 
   return (

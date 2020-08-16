@@ -9,7 +9,8 @@ import {
 import InfoBox from "./components/infoBox/InfoBox";
 import Map from "./components/map/Map";
 import Table from "./components/table/Table";
-import LineGraph from './components/lineGraph/LineGraph'
+import LineGraph from "./components/lineGraph/LineGraph";
+import "leaflet/dist/leaflet.css";
 import {
   fetchCountries,
   fetchCountryDataByCode,
@@ -24,6 +25,8 @@ function App() {
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
+  const [mapZoom, setMapZoom] = useState(3);
 
   useEffect(() => {
     const getWorldwideData = async () => {
@@ -38,8 +41,8 @@ function App() {
     const getCountries = async () => {
       const data = await fetchCountries();
       const countries = formatCountries(data);
-      const sortedData = sortDataByMaxCases(data)
-      setTableData(sortedData)
+      const sortedData = sortDataByMaxCases(data);
+      setTableData(sortedData);
       setCountries(countries);
     };
 
@@ -90,7 +93,7 @@ function App() {
             total={countryInfo.deaths}
           />
         </div>
-        <Map />
+        <Map center={mapCenter} zoom={mapZoom} />
       </div>
       <Card className="app__right">
         <CardContent>

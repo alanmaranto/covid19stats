@@ -1,9 +1,7 @@
 export const api = "https://disease.sh/v3/covid-19";
-export const apiAll = "https://disease.sh/v3/covid-19/all";
-export const apiLastDays = "https://disease.sh/v3/covid-19/historical/all?lastdays=120"
 
 export const apiCountryCode = (countryCode) =>
-  `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+  `${api}/countries/${countryCode}`;
 
 export const fetchCountries = async () => {
   try {
@@ -19,7 +17,7 @@ export const fetchCountries = async () => {
 export const fetchCountryDataByCode = async (countryCode) => {
   try {
     const url =
-      countryCode === "worldwide" ? apiAll : apiCountryCode(countryCode);
+      countryCode === "worldwide" ? `${api}/all` : apiCountryCode(countryCode);
     const response = await fetch(url);
     const country = await response.json();
     return country;
@@ -30,7 +28,7 @@ export const fetchCountryDataByCode = async (countryCode) => {
 
 export const fetchAllCountryData = async () => {
   try {
-    const response = await fetch(apiAll);
+    const response = await fetch(`${api}/all`);
     const countries = await response.json();
     return countries;
   } catch (err) {
@@ -39,9 +37,9 @@ export const fetchAllCountryData = async () => {
   }
 };
 
-export const fetch120Days = async () => {
+export const fetchLastDays = async (lastDays) => {
   try {
-    const response = await fetch(apiLastDays);
+    const response = await fetch(`${api}/historical/all?lastdays=${lastDays}`);
     const countries = await response.json();
     return countries;
   } catch (err) {
