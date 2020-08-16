@@ -24,8 +24,8 @@ const LineGraph = ({ casesType = "cases" }) => {
           data={{
             datasets: [
               {
-                backgroundColor: "#4f47bf",
-                borderColor: "#1f15a1",
+                backgroundColor: "#1176ce",
+                borderColor: "#052b4d",
                 data: data,
               },
             ],
