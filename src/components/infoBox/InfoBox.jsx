@@ -4,7 +4,7 @@ import "./infoBox.css";
 
 const InfoBox = ({ title, cases, total }) => {
   return (
-    <Card>
+    <Card className="infoBox">
       <CardContent>
         <Typography className="infoBox__title" color="textSecondary">
           {title}
