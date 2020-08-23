@@ -16,7 +16,11 @@ import {
   fetchCountryDataByCode,
   fetchAllCountryData,
 } from "./api";
-import { formatCountries, sortDataByMaxCases, prettyPrintStat } from "./helpers";
+import {
+  formatCountries,
+  sortDataByMaxCases,
+  prettyPrintStat,
+} from "./helpers";
 
 import "./App.css";
 
@@ -28,6 +32,7 @@ function App() {
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
   const [mapZoom, setMapZoom] = useState(3);
   const [mapCountries, setMapCountries] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
 
   useEffect(() => {
     const getWorldwideData = async () => {
@@ -44,7 +49,7 @@ function App() {
       const countries = formatCountries(data);
       const sortedData = sortDataByMaxCases(data);
       setTableData(sortedData);
-      setMapCountries(data)
+      setMapCountries(data);
       setCountries(countries);
     };
 
@@ -81,22 +86,30 @@ function App() {
         </div>
         <div className="app__stats">
           <InfoBox
+            onClick={(e) => setCasesType("cases")}
             title="Coronavirus cases"
             cases={prettyPrintStat(countryInfo.todayCases)}
             total={prettyPrintStat(countryInfo.cases)}
           />
           <InfoBox
+            onClick={(e) => setCasesType("recovered")}
             title="Recovered"
             cases={prettyPrintStat(countryInfo.todayRecovered)}
             total={prettyPrintStat(countryInfo.recovered)}
           />
           <InfoBox
+            onClick={(e) => setCasesType("deaths")}
             title="Deaths"
             cases={prettyPrintStat(countryInfo.todayDeaths)}
             total={prettyPrintStat(countryInfo.deaths)}
           />
         </div>
-        <Map center={mapCenter} zoom={mapZoom} countries={mapCountries} />
+        <Map
+          center={mapCenter}
+          zoom={mapZoom}
+          countries={mapCountries}
+          casesType={casesType}
+        />
       </div>
       <Card className="app__right">
         <CardContent>

@@ -2,15 +2,15 @@ import React from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import "./infoBox.css";
 
-const InfoBox = ({ title, cases, total }) => {
+const InfoBox = ({ title, cases, total, onClick }) => {
   return (
-    <Card className="infoBox">
+    <Card className="infoBox" onClick={onClick}>
       <CardContent>
-        <Typography color="textSecondary">
-          {title}
-        </Typography>
+        <Typography color="textSecondary">{title}</Typography>
         <h2 className="infoBox__cases">{cases}</h2>
-        <Typography className="infoBox__total" color="textSecondary">{total} Total</Typography>
+        <Typography className="infoBox__total" color="textSecondary">
+          {total} Total
+        </Typography>
       </CardContent>
     </Card>
   );
