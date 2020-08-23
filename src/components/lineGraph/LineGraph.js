@@ -4,6 +4,8 @@ import numeral from "numeral";
 import { buildChartData } from "../../helpers";
 import { fetchLastDays } from "../../api";
 
+import './lineGraph.css'
+
 const LineGraph = ({ casesType = "cases" }) => {
   const [data, setData] = useState({});
 
@@ -18,7 +20,7 @@ const LineGraph = ({ casesType = "cases" }) => {
   }, [casesType]);
 
   return (
-    <div>
+    <div className="line__graph">
       {data?.length > 0 && (
         <Line
           data={{
