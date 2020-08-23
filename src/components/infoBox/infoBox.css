@@ -7,11 +7,38 @@
   margin-right: 15px;
 }
 
+.infoBox--selected {
+  border-top: 10px solid;
+}
+
+.infoBox--green {
+  border-color: #7dd71d;
+}
+
+.infoBox--blue {
+  border-color: #1176ce;
+}
+
+.infoBox--red {
+  border-color: #fb4443;
+}
+
 .infoBox__cases {
-  color: #1176ce;
   font-weight: 600;
   font-size: 1.75rem;
   margin-bottom: 0.5rem;
+}
+
+.infoBox--red-content {
+  color: #fb4443;
+}
+
+.infoBox--blue-content {
+  color: #1176ce;
+}
+
+.infoBox--green-content {
+  color: #7dd71d;
 }
 
 .infoBox__total {
