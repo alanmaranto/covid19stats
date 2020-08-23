@@ -16,11 +16,20 @@ body {
   flex: 0.9;
 }
 
+.app__header > h1 {
+  color: #1176ce;
+  font-size: 2rem;
+}
+
 .app__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+}
+
+.app__dropdown {
+  background-color: white;
 }
 
 .app__stats {
